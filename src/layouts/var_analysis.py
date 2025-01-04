@@ -6,11 +6,16 @@ def calculate_var(data, confidence_level=0.95):
     index = int((1 - confidence_level) * len(sorted_returns))
     return sorted_returns[index]
 
-def display():
-    st.title("Value at Risk (VaR)")
-    st.write("Calculate and analyze Value at Risk for your portfolio.")
+def display(stock, start_date, end_date):
+    st.title("3. VaR Analysis")
+    st.write(f"Performing Value at Risk (VaR) analysis for {stock.upper()}.")
+
+    # Placeholder logic for VaR calculations
+    st.write(f"Analyzing data from {start_date} to {end_date} for {stock.upper()}.")
+    # Add your VaR analysis implementation here
 
     # Simulate portfolio returns
+
     simulated_returns = np.random.randn(1000) / 100  # Simulated daily returns
 
     confidence_level = st.slider("Confidence Level", 0.90, 0.99, 0.95)

@@ -1,15 +1,32 @@
 import streamlit as st
-from layouts import overview, market_data, var_analysis
+from layouts import market_data, overview, var_analysis
+# Import necessary libraries
+import pandas as pd
+import streamlit as st
+import yfinance as yf
+import plotly.graph_objects as go
+from datetime import datetime
 
-# Create tabs for navigation
-tab1, tab2, tab3 = st.tabs(["Home / Overview", "Market Data", "Value at Risk"])
 
-# Define content for each tab
-with tab1:
-    overview.display()  # Call the function from layouts/overview.py
+# Global Inputs (Sidebar)
+st.sidebar.header("Global Inputs")
+stock = st.sidebar.text_input("Enter Stock Ticker (e.g., FRPT, AAPL):", "FRPT", key="stock_input")
+start_date = st.sidebar.date_input("Select Start Date:", pd.to_datetime("2020-01-01"), key="start_date")
+end_date = st.sidebar.date_input("Select End Date:", pd.to_datetime("2023-01-01"), key="end_date")
+granularity = st.sidebar.selectbox("Select Data Granularity:", ["Daily", "Weekly", "Monthly"], key="granularity")
 
-with tab2:
-    market_data.display()  # Call the function from layouts/market_data.py
+# Navigation
+st.sidebar.title("Navigation")
+selected_tab = st.sidebar.radio(
+    "Go to:",
+    ["Overview", "Market Data and Trends", "VaR Analysis"]
+)
 
-with tab3:
-    var_analysis.display()  # Call the function from layouts/var_analysis.py
+# Display Selected Tab
+if selected_tab == "Overview":
+    overview.display()
+elif selected_tab == "Market Data and Trends":
+    market_data.display(stock, start_date, end_date, granularity)
+elif selected_tab == "VaR Analysis":
+    var_analysis.display(stock, start_date, end_date)  # Pass inputs here
+
