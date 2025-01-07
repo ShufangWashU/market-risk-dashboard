@@ -1,5 +1,5 @@
 import streamlit as st
-from layouts import market_data, overview, var_analysis
+from layouts import market_data, overview, var_analysis, portfolio_risk
 # Import necessary libraries
 import pandas as pd
 import streamlit as st
@@ -18,9 +18,10 @@ granularity = st.sidebar.selectbox("Select Data Granularity:", ["Daily", "Weekly
 # Navigation
 st.sidebar.title("Navigation")
 selected_tab = st.sidebar.radio(
-    "Go to:",
-    ["Overview", "Market Data and Trends", "VaR Analysis"]
+    "Choose a tab:",
+    ["Overview", "Market Data & Trends", "VaR Analysis", "Portfolio Risk Analysis"]
 )
+
 
 # Display Selected Tab
 if selected_tab == "Overview":
@@ -28,5 +29,7 @@ if selected_tab == "Overview":
 elif selected_tab == "Market Data and Trends":
     market_data.display(stock, start_date, end_date, granularity)
 elif selected_tab == "VaR Analysis":
-    var_analysis.display(stock, start_date, end_date)  # Pass inputs here
+    var_analysis.display(stock, start_date, end_date)  
+elif selected_tab == "Portfolio Risk Analysis":
+    portfolio_risk.display()
 
