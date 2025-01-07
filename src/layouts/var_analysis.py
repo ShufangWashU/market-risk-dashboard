@@ -20,21 +20,30 @@ def calculate_cvar(data, confidence_level=0.95):
     var = calculate_var(data, confidence_level)
     return data[data <= var].mean()
 
-def display(stock, start_date, end_date):
+def display(portfolio_df, start_date, end_date):
     st.title("3. VaR Analysis")
-    st.write(f"Performing Value at Risk (VaR) analysis for {stock.upper()}.")
+    st.write("Performing Value at Risk (VaR) analysis for your portfolio.")
+
+    # Validate portfolio
+    if portfolio_df.empty or portfolio_df["Asset"].str.strip().eq("").any():
+        st.warning("Please define a valid portfolio in the sidebar.")
+        return
+
+    # Select stock from portfolio
+    focused_stock = st.selectbox(
+        "Select a stock from your portfolio for VaR analysis:",
+        portfolio_df["Asset"].tolist()
+    )
 
     # Fetch data
     try:
-        df = yf.download(stock, start=start_date, end=end_date, auto_adjust=False)
+        df = yf.download(focused_stock, start=start_date, end=end_date, auto_adjust=False)
         df['Daily Returns'] = df['Adj Close'].pct_change().dropna()
 
         if df.empty:
             st.error("No data available for the selected stock and date range.")
             return
-
-        # Show data preview
-
+        
         # Input confidence level
         confidence_level = st.slider("Confidence Level", 0.90, 0.99, 0.95)
 
