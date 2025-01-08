@@ -1,87 +1,79 @@
 # Market Risk Dashboard
 
-## Overview
-The **Market Risk Dashboard** is an interactive tool developed using Python and Streamlit to analyze and visualize the market risks of selected stocks. This dashboard provides valuable risk metrics, including historical Value at Risk (VaR), parametric VaR, conditional VaR (CVaR), and Monte Carlo VaR. Additionally, it features rolling volatility analysis and dynamic visualizations to assist in assessing the financial risk associated with an asset.
+Welcome to the **Market Risk Dashboard**, a comprehensive tool for visualizing and analyzing market risks. This dashboard is designed for financial analysts, risk managers, and anyone interested in gaining deeper insights into market trends and risk factors.
 
 ---
 
 ## Features
-1. **Fetch Stock Data**:
-   - Use `yfinance` to fetch historical stock data.
-   - Supports user-specified stock tickers, start dates, and end dates.
 
-2. **Visualizations**:
-   - Adjusted Closing Price over time.
-   - Rolling Volatility (30-day standard deviation).
-
-3. **Risk Metrics**:
-   - **Historical VaR**: Based on historical daily returns.
-   - **Parametric VaR**: Uses mean and standard deviation of returns with an assumption of normal distribution.
-   - **Conditional VaR (CVaR)**: Expected loss beyond the VaR threshold.
-   - **Monte Carlo VaR**: Simulated returns to estimate potential losses.
-
-4. **User Inputs**:
-   - Customizable confidence levels for VaR (90% to 99%).
+- **Market Data and Trends**: Access and visualize historical and real-time market data for selected stocks or indices.
+- **Value at Risk (VaR) Analysis**: Quantify portfolio risk using industry-standard VaR methods.
+- **Monte Carlo Simulations**: Simulate potential future outcomes based on historical data.
+- **GARCH Modeling**: Explore volatility trends with advanced econometric models.
+- **Alerts and Monitoring**: Set up custom alerts and monitor market risk factors in real time.
+- **Interactive Visualizations**: Customize plots and download results for further analysis.
 
 ---
 
-## How to Run
+## How to Use
 
-### Prerequisites
-1. Install Python (>=3.8).
-2. Install dependencies using `pip`:
-   ```bash
-   pip install streamlit yfinance pandas numpy
-   ```
+1. **Navigate**: Use the sidebar to switch between tabs, each focusing on a specific aspect of market risk.
+2. **Input Customization**: Choose stocks, time ranges, and parameters for analysis.
+3. **View Results**: Visualize insights through interactive plots and charts.
+4. **Export Data**: Download the analysis results for offline use.
 
-### Run the Application
+---
+
+## Technology Stack
+
+- **Frontend**: [Streamlit](https://streamlit.io/) for an interactive user interface.
+- **Data Source**: [Yahoo Finance API](https://finance.yahoo.com/).
+- **Visualization**: Python libraries including Matplotlib and Plotly.
+- **Modeling**: Advanced risk modeling techniques like Monte Carlo and GARCH.
+
+---
+
+## Installation
+
+Follow these steps to run the dashboard locally:
+
 1. Clone the repository:
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/ShufangWashU/market-risk-dashboard.git
    cd market-risk-dashboard
    ```
-
-2. Launch the dashboard:
+2. Install dependencies:
    ```bash
-   streamlit run dashboard.py
+   pip install -r requirements.txt
+   ```
+3. Run the Streamlit app:
+   ```bash
+   streamlit run app.py
    ```
 
-3. Open the URL displayed in the terminal (default: `http://localhost:8501`) to access the dashboard in your browser.
+---
+
+## Contact
+
+Have questions or feedback? Reach out via:
+
+- **Email**: [shufang@wustl](mailto:shufang@wustl)
+- **GitHub**: [Market Risk Dashboard](https://github.com/ShufangWashU/market-risk-dashboard)
 
 ---
 
-## File Structure
-```plaintext
-market-risk-dashboard/
-├── dashboard.py       # Main script for the dashboard
-├── README.md          # Project documentation
-└── requirements.txt   # Python dependencies
-```
+## About the Developer
+
+This project was created by Shufang, a certified Financial Risk Manager (FRM) with expertise in market risk analysis, data modeling, and financial visualization. The dashboard serves as a demonstration of professional skills in risk management and programming.
 
 ---
 
-## How It Works
-### Input Parameters
-- **Stock Ticker**: Enter the stock symbol (e.g., `AAPL`, `FRPT`).
-- **Date Range**: Specify the start and end dates for historical data analysis.
-- **Confidence Level**: Adjust the confidence level for VaR calculations.
+## Contributing
 
-### Calculations
-1. **Daily Returns**:
-   - Percentage change in Adjusted Close prices.
-
-2. **Rolling Volatility**:
-   - 30-day rolling standard deviation of daily returns.
-
-3. **Value at Risk (VaR)**:
-   - **Historical VaR**: Based on historical returns.
-   - **Parametric VaR**: Assumes normal distribution.
-   - **Conditional VaR (CVaR)**: Average loss beyond VaR.
-   - **Monte Carlo VaR**: Simulated returns to estimate losses.
+Contributions are welcome! Please open an issue or submit a pull request if you’d like to enhance the dashboard or fix any issues.
 
 ---
 
-## Next Steps
-1. Add portfolio risk analysis for multi-asset portfolios.
-2. Implement efficient frontier and portfolio optimization.
-3. Deploy the dashboard online using Streamlit Cloud
+## License
+
+This project is licensed under the [MIT License](LICENSE).
